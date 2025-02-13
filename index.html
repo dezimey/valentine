@@ -11,7 +11,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url('your-background.gif') no-repeat center center/cover;
+            background: url('bg.png') no-repeat center center/cover;
             font-family: 'Arial', sans-serif;
             overflow: hidden;
             margin: 0;
@@ -88,7 +88,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: url('your-paper-bg.jpg') no-repeat center center/cover;
+            background: url('paper.png') no-repeat center center/cover;
             overflow-y: auto;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
@@ -131,21 +131,24 @@
         }
 
         /* Mute/Unmute Button */
-        .music-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .music-btn:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
+.music-btn {
+    position: fixed; /* Fixed to keep it in place */
+    top: 15px; /* Upper right corner */
+    right: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 10; /* Ensures it's above everything */
+}
+
+.music-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
 
         /* Envelope Bounce Animation */
         @keyframes bounce {
@@ -160,7 +163,7 @@
     <div class="container">
         <!-- Background Music -->
         <audio id="bg-music" loop autoplay>
-            <source src="your-background-music.mp3" type="audio/mp3">
+            <source src="music.mp3" type="audio/mp3">
         </audio>
         
         <!-- Mute/Unmute Button -->
@@ -173,9 +176,9 @@
 
         <!-- Love Letter -->
         <div class="letter">
-            <img src="your-picture.jpg" alt="Us">
+            <img src="us.jpg" alt="Us">
             <audio controls class="music">
-                <source src="your-music.mp3" type="audio/mp3">
+                <source src="music.mp3" type="audio/mp3">
                 Your browser does not support the audio element.
             </audio>
             <p>Happy Valentine's Day, my love! 💜  
