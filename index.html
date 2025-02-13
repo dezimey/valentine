@@ -32,7 +32,7 @@
             border-radius: 5px;
             transition: transform 0.5s ease;
             animation: bounce 1.5s infinite ease-in-out;
-            margin-top: 100px; /* Adjusted value to move the envelope lower */
+            margin-top: 50px; /* Adjusted value to move the envelope lower */
         }
 
         .envelope:before, .envelope:after {
@@ -162,7 +162,13 @@
     </style>
 </head>
 <body>
-
+    
+    <div class="container">
+        <!-- Background Music -->
+        <audio id="bg-music" loop autoplay>
+            <source src="bg- music.mp3" type="audio/mp3">
+        </audio>
+        
     <div class="container">
         <button class="music-btn" onclick="toggleMusic()">🔊 Mute</button>
         <div class="envelope" onclick="openLetter()">
@@ -170,6 +176,10 @@
         </div>
         <div class="letter">
             <img src="us.jpg" alt="Us">
+             <audio controls class="music">
+                <source src="music.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
             <p>Happy Valentine's Day, my love! 💜  
             You are my heart, my happiness, and my greatest love.  
             Every moment with you is special. Love you always! 💙  
