@@ -32,7 +32,7 @@
             border-radius: 5px;
             transition: transform 0.5s ease;
             animation: bounce 1.5s infinite ease-in-out;
-            margin-top: 50px; /* Adjusted value to move the envelope lower */
+            margin-top: 100px; /* Adjusted value to move the envelope lower */
         }
 
         .envelope:before, .envelope:after {
@@ -112,7 +112,7 @@
             padding: 10px;
             border-radius: 5px;
             background: rgba(155, 89, 182, 0.3);
-            color: #013f88; /* Updated deep blue text color */
+            color: #013f88;
             max-height: 300px;
             overflow-y: auto;
         }
@@ -122,7 +122,7 @@
 
         /* Close Button */
         .close-btn {
-            margin-top: 25px;
+            margin-top: 10px;
             padding: 8px 15px;
             background: #d35400;
             border: none;
@@ -136,53 +136,61 @@
         }
 
         /* Mute/Unmute Button */
-        .music-btn {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            z-index: 10;
-        }
+.music-btn {
+    position: fixed; /* Fixed to keep it in place */
+    top: 15px; /* Upper right corner */
+    right: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 10; /* Ensures it's above everything */
+}
 
-        .music-btn:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
+.music-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
 
         /* Envelope Bounce Animation */
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
+
     </style>
 </head>
 <body>
-    
+
     <div class="container">
         <!-- Background Music -->
         <audio id="bg-music" loop autoplay>
             <source src="bg- music.mp3" type="audio/mp3">
         </audio>
         
-    <div class="container">
+        <!-- Mute/Unmute Button -->
         <button class="music-btn" onclick="toggleMusic()">🔊 Mute</button>
+
+        <!-- Envelope -->
         <div class="envelope" onclick="openLetter()">
             <div class="seal"></div>
         </div>
+
+        <!-- Love Letter -->
         <div class="letter">
             <img src="us.jpg" alt="Us">
-             <audio controls class="music">
+            <audio controls class="music">
                 <source src="music.mp3" type="audio/mp3">
                 Your browser does not support the audio element.
             </audio>
             <p>Happy Valentine's Day, my love! 💜  
             You are my heart, my happiness, and my greatest love.  
             Every moment with you is special. Love you always! 💙  
+            <br><br>
+            (You can make this letter longer, and it will become scrollable!)
             </p>
             <button class="close-btn" onclick="closeLetter()">Close</button>
         </div>
@@ -190,18 +198,35 @@
 
     <script>
         function openLetter() {
-            document.querySelector('.letter').style.display = "block";
-            document.querySelector('.letter').style.opacity = "1";
+            document.querySelector('.envelope').style.transform = "translateY(200px)";
+            document.querySelector('.envelope').style.animation = "none";
+            document.querySelector('.seal').style.opacity = "0";
+            setTimeout(() => {
+                document.querySelector('.letter').style.display = "block";
+                document.querySelector('.letter').style.opacity = "1";
+            }, 500);
         }
+
         function closeLetter() {
             document.querySelector('.letter').style.opacity = "0";
             setTimeout(() => {
                 document.querySelector('.letter').style.display = "none";
+                document.querySelector('.envelope').style.transform = "translateY(0)";
+                document.querySelector('.envelope').style.animation = "bounce 1.5s infinite ease-in-out";
+                document.querySelector('.seal').style.opacity = "1";
             }, 500);
         }
+
         function toggleMusic() {
+            let music = document.getElementById("bg-music");
             let button = document.querySelector(".music-btn");
-            button.innerHTML = button.innerHTML === "🔊 Mute" ? "🔇 Unmute" : "🔊 Mute";
+            if (music.paused) {
+                music.play();
+                button.innerHTML = "🔊 Mute";
+            } else {
+                music.pause();
+                button.innerHTML = "🔇 Unmute";
+            }
         }
     </script>
 
